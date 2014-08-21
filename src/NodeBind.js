@@ -28,11 +28,18 @@
     var bindings = node.bindings_;
     if (!bindings)
       bindings = node.bindings_ = {};
+      /* modification from original repo */
+      if (bindings[name]){
+          if(binding[name]){
+              binding[name].close();
+          }else{
+              bindings[name].close();
+          }
+      }
 
-    if (bindings[name])
-      binding[name].close();
 
-    return bindings[name] = binding;
+      return bindings[name] = binding;
+
   }
 
   function returnBinding(node, name, binding) {
